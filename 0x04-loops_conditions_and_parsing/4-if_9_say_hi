@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#A script that prints best school but says hi at the 9th iteration
+i=1
+while [ $i -le 10 ]; do
+	if [ $i -eq 9 ]; then
+		echo "Hi"
+	else
+		echo "Best School"
+	fi
+	((i++))
+done

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#script that prints best school but bad luck for 4 and good luuck for 8
+i=1
+while [ $i -le 10 ]; do
+	if [ $i -eq 4 ]; then
+		echo "bad luck"
+	elif [ $i -eq 8 ]; then
+		echo "good luck"
+	else
+		echo "Best School"
+	fi
+	((i++))
+done

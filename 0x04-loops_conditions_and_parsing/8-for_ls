@@ -2,7 +2,6 @@
 # Loop through the files in the current directory
 for file in *; do
     if [ -f "$file" ] && [[ "$file" != .* ]]; then
-        # Use awk to extract the part after the first dash
         new_name=$(echo "$file" | awk -F '-' '{print $2}')
         echo "$new_name"
     fi

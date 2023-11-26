@@ -1,31 +1,23 @@
 #!/usr/bin/env bash
 # Function to handle SIGTERM signal
-terminate() {
-    echo "I hate the kill command"
-}
-
 # Function to handle SIGINT signal
-interrupt() {
-    echo "Y U no love me?!"
-}
-
 # Function to handle SIGQUIT signal
-quit() {
-    echo "Deleting PID file and terminating..."
-    rm /var/run/myscript.pid
-    exit
+# Register signal handlers
+# Get current PID and save it to the file
+# Displaying "To infinity and beyond" indefinitely
+
+terminator() {
+  rm /var/run/myscript.pid
+  exit
 }
 
-# Register signal handlers
-trap terminate SIGTERM
-trap interrupt SIGINT
-trap quit SIGQUIT SIGTERM
+echo "$$" > /var/run/myscript.pid
 
-# Get current PID and save it to the file
-echo $$ > /var/run/myscript.pid
-
-# Displaying "To infinity and beyond" indefinitely
-while true; do
-    echo "To infinity and beyond"
-    sleep 1
+while true
+do
+  echo "To infinity and beyond"
+  sleep 2
+  trap 'echo "Y U no love me?!"' SIGINT
+  trap 'echo "I hate the kill command" && terminator' SIGTERM
+  trap 'terminator' SIGQUIT
 done

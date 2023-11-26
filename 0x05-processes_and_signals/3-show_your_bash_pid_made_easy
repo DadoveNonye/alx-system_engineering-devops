@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Get PIDs of processes containing the word 'bash' in their names
+pgrep -f bash | xargs -I {} ps -p {} -o pid,cmd --no-headers

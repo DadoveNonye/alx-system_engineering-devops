@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#A Bash script that listens on port 98 on localhost
+if ! command -v nc &> /dev/null; then
+    echo "Netcat (nc) command not found. Please install netcat."
+    exit 1
+fi
+
+# Listen on port 98
+nc -l -p 98 -vv

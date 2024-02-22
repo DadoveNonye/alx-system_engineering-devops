@@ -35,7 +35,7 @@ def fetch_todo_list(employee_id):
             writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
 
             for todo in todo_data:
-                task_completed_status = "TRUE" if todo.get("completed") else "FALSE"
+                task_completed_status = "True" if todo.get("completed") else "False"
                 task_title = todo.get("title")
                 writer.writerow([user_id, username, task_completed_status, task_title])
 

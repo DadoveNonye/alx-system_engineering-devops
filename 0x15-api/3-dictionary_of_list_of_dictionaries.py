@@ -40,7 +40,7 @@ def export_data():
 
         filename = 'todo_all_employees.json'
         with open(filename, "w") as json_file:
-            json.dumps(user_tasks, json_file, indent=4)
+            json.dump(user_tasks, json_file, indent=4)
 
 if __name__ == '__main__':
     export_data()

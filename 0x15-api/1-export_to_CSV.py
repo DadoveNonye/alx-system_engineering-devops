@@ -9,7 +9,15 @@ import sys
 
 
 def fetch_todo_list(employee_id):
-    """fetch data"""
+    """
+    Fetches TODO list items for a given employee ID and prints the completed tasks.
+
+    Args:
+        employee_id (int): The ID of the employee.
+
+    Returns:
+        None
+    """
     user_response = requests.get(
         f"https://jsonplaceholder.typicode.com/users/{employee_id}")
     todo_response = requests.get(

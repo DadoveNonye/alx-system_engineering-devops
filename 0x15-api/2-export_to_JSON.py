@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 """Export to json"""
-import requests
 import json
+import requests
 
 
 def export_todo_list_to_json(employee_id):
@@ -17,20 +17,22 @@ def export_todo_list_to_json(employee_id):
         None
     """
 
-    user_response = requests.get(f"https://jsonplaceholder.typicode.com/users/{employee_id}")
+    user_response = requests.get(
+        f"https://jsonplaceholder.typicode.com/users/{employee_id}")
     user_data = user_response.json()
 
     # Check for successful user data retrieval
     if user_response.status_code != 200:
-        print(f"Error: Failed to retrieve user data with status code {user_response.status_code}")
+        print(f"Error: Failed to retrieve data {user_response.status_code}")
         return
 
     # Fetch TODO list items and filter user tasks
-    todo_response = requests.get(f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}")
+    todo_response = requests.get(
+        f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}")
     todo_data = todo_response.json()
 
     if todo_response.status_code != 200:
-        print(f"Error: Failed to retrieve TODO list data with status code {todo_response.status_code}")
+        print(f"Error: Failed to retrieve list {todo_response.status_code}")
         return
 
     # Extract user information

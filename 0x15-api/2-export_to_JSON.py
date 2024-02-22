@@ -59,7 +59,7 @@ def export_todo_list_to_json(employee_id):
     # Save the JSON data to a file named USER_ID.json
     filename = f"{employee_id}.json"
     with open(filename, "w") as outfile:
-        json.dump(json_data, outfile, indent=4)
+        json.dumps(json_data, outfile, indent=4)
 
     print(f"Employee TODO list exported successfully to {filename}")
 

@@ -8,29 +8,20 @@ import sys
 
 def fetch_todo_list(employee_id):
     """API url"""
-    url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
+    if not isinstance(employee_id, int) or employee_id <= 0:
+        raise ValueError ("Employee ID should be an integer")
+    response = requests.get("https://jsonplaceholder.typicode.com/todos")
 
-    try:
-        response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
 
-        if response.status_code == 200:
-            todo_list = response.json()
-            completed_task = [task['task'] for task in todo_list if task['completed']]
-
-            total_task = len(todo_list)
-            num_completed_task = len(completed_task)
-            print(f"Employee {todo_list[0]['userId']} is done with tasks ({num_completed_tasks}/{total_tasks}):")
-            for task_title in completed_tasks:
-                print(f"\t{task_title}")
-        else:
-            print("failed to fetch TODO list")
-    except Exception as e:
-        print(f"error occured: {e}")
-
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python script.py <employee_id>")
-        sys.exit(1)
-
-    employee_id = int(sys.argv[1])
-    fetch_todo_list(employee_id)
+        employee_task = [task for task in data if task["userID"] == employee_id]
+        completed_task = [task for task in employee_task if task["completed"]]
+        total_task = len(employee_task)  
+    
+        print(f"Employee {employee_id} is done with tasks({completed_task}/{total_task}):")
+        for task in employee_task:
+            if task["completed"]:
+                print(f"\t {task['title']}")
+    else:
+        print(f"Error: API request failed with status code {response.status_code}")

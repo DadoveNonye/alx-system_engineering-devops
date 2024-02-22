@@ -10,7 +10,8 @@ import sys
 
 def fetch_todo_list(employee_id):
     """
-    Fetches TODO list items for a given employee ID and prints the completed tasks.
+    Fetches TODO list items for a given employee ID and 
+    prints the completed tasks.
 
     Args:
         employee_id (int): The ID of the employee.
@@ -40,8 +41,8 @@ def fetch_todo_list(employee_id):
                 task_com_status = "COMPLETED" if todo.get(
                     "completed") else "NOT COMPLETED"
                 task_title = todo.get("title")
-                writer.writerow
-                ([user_id, username, task_com_status, task_title])
+                writer.writerow(
+                    [user_id, username, task_com_status, task_title])
 
         print(f"Data exported to {filename}")
     else:

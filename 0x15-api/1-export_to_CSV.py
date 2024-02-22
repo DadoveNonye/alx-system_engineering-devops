@@ -7,10 +7,13 @@ import csv
 import requests
 import sys
 
+
 def fetch_todo_list(employee_id):
     """fetch data"""
-    user_response = requests.get(f"https://jsonplaceholder.typicode.com/users/{employee_id}")
-    todo_response = requests.get(f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}")
+    user_response = requests.get(
+        f"https://jsonplaceholder.typicode.com/users/{employee_id}")
+    todo_response = requests.get(
+        f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}")
 
     if user_response.status_code == 200 and todo_response.status_code == 200:
         user_data = user_response.json()
@@ -22,16 +25,20 @@ def fetch_todo_list(employee_id):
 
         with open(filename, "w", newline="", encoding="utf-8") as csvfile:
             writer = csv.writer(csvfile)
-            writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+            writer.writerow(
+               ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
 
             for todo in todo_data:
-                task_completed_status = "COMPLETED" if todo.get("completed") else "NOT COMPLETED"
+                task_com_status = "COMPLETED" if todo.get(
+                    "completed") else "NOT COMPLETED"
                 task_title = todo.get("title")
-                writer.writerow([user_id, username, task_completed_status, task_title])
+                writer.writerow
+                ([user_id, username, task_com_status, task_title])
 
         print(f"Data exported to {filename}")
     else:
-        print(f"Error: API request failed with status codes {user_response.status_code}, {todo_response.status_code}")
+        print(f"Error: API request failed with status codes
+               {user_response.status_code}, {todo_response.status_code}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
